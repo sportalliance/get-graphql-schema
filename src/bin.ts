@@ -34,6 +34,10 @@ Options:
       output: {
         type: 'string',
       },
+      fromJson: {
+        type: 'boolean',
+        default: false,
+      }
     },
   },
 )
@@ -68,6 +72,7 @@ export async function main(cli: meow.Result): Promise<void> {
     method: cli.flags.method,
     headers,
     json: cli.flags.json,
+    fromJson: cli.flags.fromJson,
   })
 
   if (schema.status === 'err') {

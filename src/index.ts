@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import meow = require('meow')
 import mkdirp = require('mkdirp')
-import { introspectionQuery } from 'graphql/utilities/introspectionQuery'
+import { IntrospectionQuery, introspectionQuery } from 'graphql/utilities/introspectionQuery'
 import { buildClientSchema } from 'graphql/utilities/buildClientSchema'
 import { printSchema } from 'graphql/utilities/schemaPrinter'
 import * as query from 'querystringify'
@@ -40,6 +40,7 @@ interface Options {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
   headers?: { [key: string]: string }
   json?: boolean
+  fromJson?: boolean
 }
 
 /**
@@ -56,16 +57,18 @@ export async function getRemoteSchema(
   { status: 'ok'; schema: string } | { status: 'err'; message: string }
 > {
   try {
-    const { data, errors } = await fetch(endpoint, {
-      method: options.method,
-      headers: options.headers,
-      body: JSON.stringify({ query: introspectionQuery }),
-    }).then(res => res.json())
-
-    if (errors) {
-      return { status: 'err', message: JSON.stringify(errors, null, 2) }
+    let data: IntrospectionQuery;
+    if (options.fromJson) {
+      const response = await fetchJsonSchema(endpoint, options)
+      data = response.data
+      console.log('data', response)
+    } else {
+      const response = await fetchIntrospectionQuery(endpoint, options)
+      data = response.data
+      if (response.errors) {
+        return { status: 'err', message: JSON.stringify(response.errors, null, 2) }
+      }
     }
-
     if (options.json) {
       return {
         status: 'ok',
@@ -81,6 +84,28 @@ export async function getRemoteSchema(
   } catch (err) {
     return { status: 'err', message: err.message }
   }
+}
+
+async function fetchIntrospectionQuery(
+  endpoint: string,
+  options: Options,
+): Promise<{ data: IntrospectionQuery; errors: any[]; }> {
+  return await fetch(endpoint, {
+    method: options.method,
+    headers: options.headers,
+    body: JSON.stringify({ query: introspectionQuery }),
+  }).then(res => res.json())
+}
+
+async function fetchJsonSchema(
+  endpoint: string,
+  options: Options,
+): Promise<{ data: IntrospectionQuery; errors: any[]; }> {
+  console.log('fetching from JSON')
+  return await fetch(endpoint, {
+    method: options.method,
+    headers: options.headers,
+  }).then(res => res.json())
 }
 
 /**
