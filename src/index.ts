@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import fetch from 'node-fetch'
 import * as fs from 'fs'
 import * as path from 'path'
