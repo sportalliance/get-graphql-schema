@@ -14,7 +14,7 @@
     "url": "git+https://github.com/graphcool/get-graphql-schema.git"
   },
   "scripts": {
-    "build": "tsc -d",
+    "compile": "tsc -d",
     "prepublish": "npm run build",
     "test": "NODE_ENV=test jest",
     "release": "semantic-release"
