@@ -61,7 +61,6 @@ export async function getRemoteSchema(
     if (options.fromJson) {
       const response = await fetchJsonSchema(endpoint, options)
       data = response.data
-      console.log('data', response)
     } else {
       const response = await fetchIntrospectionQuery(endpoint, options)
       data = response.data
@@ -101,7 +100,6 @@ async function fetchJsonSchema(
   endpoint: string,
   options: Options,
 ): Promise<{ data: IntrospectionQuery; errors: any[]; }> {
-  console.log('fetching from JSON')
   return await fetch(endpoint, {
     method: options.method,
     headers: options.headers,
