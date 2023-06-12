@@ -4,7 +4,7 @@
   "description": "Downloads the GraphQL Schema of an GraphQL endpoint URL",
   "author": "Johannes Schickling <johannes@graph.cool>",
   "bin": {
-    "get-graphql-schema": "dist/index.js"
+    "get-graphql-schema": "dist/bin.js"
   },
   "files": [
     "dist"
