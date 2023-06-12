@@ -44,6 +44,7 @@ var introspectionQuery_1 = require("graphql/utilities/introspectionQuery");
 var buildClientSchema_1 = require("graphql/utilities/buildClientSchema");
 var schemaPrinter_1 = require("graphql/utilities/schemaPrinter");
 var query = require("querystringify");
+console.log('I am ACTUALLY RUNNING');
 /**
  *
  * Normalizes header input from CLI

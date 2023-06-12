@@ -9,6 +9,8 @@ import { buildClientSchema } from 'graphql/utilities/buildClientSchema'
 import { printSchema } from 'graphql/utilities/schemaPrinter'
 import * as query from 'querystringify'
 
+
+console.log('I am ACTUALLY RUNNING')
 /**
  *
  * Normalizes header input from CLI
