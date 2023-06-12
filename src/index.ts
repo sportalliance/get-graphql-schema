@@ -10,7 +10,6 @@ import { printSchema } from 'graphql/utilities/schemaPrinter'
 import * as query from 'querystringify'
 
 
-console.log('I am ACTUALLY RUNNING')
 /**
  *
  * Normalizes header input from CLI
@@ -59,8 +58,6 @@ export async function getRemoteSchema(
 ): Promise<
   { status: 'ok'; schema: string } | { status: 'err'; message: string }
 > {
-  console.log('options', options)
-  console.log('endpoint', endpoint)
   try {
     let data: IntrospectionQuery;
     if (options.fromJson) {

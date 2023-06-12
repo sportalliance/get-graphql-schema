@@ -44,7 +44,6 @@ var introspectionQuery_1 = require("graphql/utilities/introspectionQuery");
 var buildClientSchema_1 = require("graphql/utilities/buildClientSchema");
 var schemaPrinter_1 = require("graphql/utilities/schemaPrinter");
 var query = require("querystringify");
-console.log('I am ACTUALLY RUNNING');
 /**
  *
  * Normalizes header input from CLI
@@ -84,27 +83,23 @@ function getRemoteSchema(endpoint, options) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    console.log('options', options);
-                    console.log('endpoint', endpoint);
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 6, , 7]);
+                    _a.trys.push([0, 5, , 6]);
                     data = void 0;
-                    if (!options.fromJson) return [3 /*break*/, 3];
+                    if (!options.fromJson) return [3 /*break*/, 2];
                     return [4 /*yield*/, fetchJsonSchema(endpoint, options)];
-                case 2:
+                case 1:
                     response = _a.sent();
                     data = response.data;
-                    return [3 /*break*/, 5];
-                case 3: return [4 /*yield*/, fetchIntrospectionQuery(endpoint, options)];
-                case 4:
+                    return [3 /*break*/, 4];
+                case 2: return [4 /*yield*/, fetchIntrospectionQuery(endpoint, options)];
+                case 3:
                     response = _a.sent();
                     data = response.data;
                     if (response.errors) {
                         return [2 /*return*/, { status: 'err', message: JSON.stringify(response.errors, null, 2) }];
                     }
-                    _a.label = 5;
-                case 5:
+                    _a.label = 4;
+                case 4:
                     if (options.json) {
                         return [2 /*return*/, {
                                 status: 'ok',
@@ -118,11 +113,11 @@ function getRemoteSchema(endpoint, options) {
                                 schema: schemaPrinter_1.printSchema(schema),
                             }];
                     }
-                    return [3 /*break*/, 7];
-                case 6:
+                    return [3 /*break*/, 6];
+                case 5:
                     err_1 = _a.sent();
                     return [2 /*return*/, { status: 'err', message: err_1.message }];
-                case 7: return [2 /*return*/];
+                case 6: return [2 /*return*/];
             }
         });
     });
