@@ -1,4 +1,4 @@
-import meow = require('meow');
+import * as meow from 'meow';
 /**
  *
  * Normalizes header input from CLI

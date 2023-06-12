@@ -1,8 +1,8 @@
 import fetch from 'node-fetch'
 import * as fs from 'fs'
 import * as path from 'path'
-import meow = require('meow')
-import mkdirp = require('mkdirp')
+import * as  meow from 'meow'
+import * as mkdirp from 'mkdirp'
 import { IntrospectionQuery, introspectionQuery } from 'graphql/utilities/introspectionQuery'
 import { buildClientSchema } from 'graphql/utilities/buildClientSchema'
 import { printSchema } from 'graphql/utilities/schemaPrinter'

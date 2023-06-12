@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import meow = require('meow')
+import * as  meow from 'meow'
 import { getHeadersFromInput, getRemoteSchema, printToFile } from '.'
 
 const cli = meow(

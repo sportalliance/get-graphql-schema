@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import meow = require('meow');
+import * as meow from 'meow';
 /**
  * Main
  */
