@@ -52,7 +52,9 @@ describe('bin', () => {
     const getHeadersFromInputMock = jest.spyOn(index, 'getHeadersFromInput')
     const getRemoteSchemaMock = jest
       .spyOn(index, 'getRemoteSchema')
-      .mockResolvedValue({ status: 'err', message: 'pass' })
+      .mockImplementation(() =>
+        Promise.resolve({ status: 'err' as 'err', message: 'pass' }),
+      )
     const printToFileMock = jest.spyOn(index, 'printToFile')
 
     /**
@@ -88,7 +90,9 @@ describe('bin', () => {
     const getHeadersFromInputMock = jest.spyOn(index, 'getHeadersFromInput')
     const getRemoteSchemaMock = jest
       .spyOn(index, 'getRemoteSchema')
-      .mockResolvedValue({ status: 'ok', schema: 'pass' })
+      .mockImplementation(() =>
+        Promise.resolve({ status: 'ok' as 'ok', schema: 'pass' }),
+      )
     const printToFileMock = jest.spyOn(index, 'printToFile')
 
     /**
@@ -124,10 +128,12 @@ describe('bin', () => {
     const getHeadersFromInputMock = jest.spyOn(index, 'getHeadersFromInput')
     const getRemoteSchemaMock = jest
       .spyOn(index, 'getRemoteSchema')
-      .mockResolvedValue({ status: 'ok', schema: 'pass' })
+      .mockImplementation(() =>
+        Promise.resolve({ status: 'ok' as 'ok', schema: 'pass' }),
+      )
     const printToFileMock = jest
       .spyOn(index, 'printToFile')
-      .mockImplementation(() => false)
+      .mockImplementation(() => ({ status: 'ok' as 'ok', path: 'path' }))
 
     /**
      * Execution
@@ -161,10 +167,12 @@ describe('bin', () => {
     const getHeadersFromInputMock = jest.spyOn(index, 'getHeadersFromInput')
     const getRemoteSchemaMock = jest
       .spyOn(index, 'getRemoteSchema')
-      .mockResolvedValue({ status: 'ok', schema: 'pass' })
+      .mockImplementation(() =>
+        Promise.resolve({ status: 'ok' as 'ok', schema: 'pass' }),
+      )
     const printToFileMock = jest
       .spyOn(index, 'printToFile')
-      .mockImplementation(() => false)
+      .mockImplementation(() => ({ status: 'ok' as 'ok', path: 'path' }))
 
     /**
      * Execution
