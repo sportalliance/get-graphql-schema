@@ -11,6 +11,10 @@ describe('core function works as expected', () => {
     jest.restoreAllMocks()
   })
 
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+
   /**
    * getHeadersFromInput
    */
@@ -75,7 +79,7 @@ describe('core function works as expected', () => {
     const fsExistsSyncMock = jest.spyOn(fs, 'existsSync').mockReturnValue(false)
     const mkdirpSyncMock = jest
       .spyOn(mkdirp, 'sync')
-      .mockImplementation(() => {})
+      .mockImplementation(() => '/pass')
     const fsWriteFileSyncMock = jest
       .spyOn(fs, 'writeFileSync')
       .mockImplementation(() => {})
@@ -103,7 +107,7 @@ describe('core function works as expected', () => {
     const fsExistsSyncMock = jest.spyOn(fs, 'existsSync').mockReturnValue(true)
     const mkdirpSyncMock = jest
       .spyOn(mkdirp, 'sync')
-      .mockImplementation(() => {})
+      .mockImplementation(() => '/pass')
     const fsWriteFileSyncMock = jest
       .spyOn(fs, 'writeFileSync')
       .mockImplementation(() => {})
